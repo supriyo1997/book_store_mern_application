@@ -32,19 +32,19 @@ app.use(expressValidator());
 app.use(cors());
 
 //routes middleware
-app.use("/api", authRoutes);
-app.use("/api", userRoutes);
-app.use("/api", categoryRoutes);
-app.use("/api", productRoutes);
-app.use("/api", braintreeRoutes);
-app.use("/api", orderRoutes);
+app.use("/", authRoutes);
+app.use("/", userRoutes);
+app.use("/", categoryRoutes);
+app.use("/", productRoutes);
+app.use("/", braintreeRoutes);
+app.use("/", orderRoutes);
 
 const port = process.env.PORT || 8000;
 
 if(process.env.NODE_ENV=="production"){
     app.use(express.static("react-frontend/build"));
     const path =require("path");
-    app.get("/api",(req,res)=>{
+    app.get("*",(req,res)=>{
         res.sendFile(path.resolve(__dirname,'client','build','index.html'));
     })
 }
